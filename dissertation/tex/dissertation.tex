@@ -1,0 +1,24 @@
+\documentclass[a4paper, 12pt, final]{report}
+\usepackage{style}
+
+%:TC ignore
+
+\begin{document}
+  \subfile{coverpage}
+  \addtocounter{page}{1}
+  \newpage\pagestyle{plain}\mbox{}\newpage
+  \subfile{proforma}
+  \newpage\pagestyle{plain}\mbox{}\newpage
+  \subfile{declaration}
+  \tableofcontents
+  \subfile{introduction}
+  \subfile{preparation}
+  \subfile{implementation}
+  \subfile{evaluation}
+  \subfile{conclusions}
+  \bibliographystyle{ieeetr}
+  \bibliography{bibliography}
+  \includepdf[pages=-]{proposal.pdf}
+\end{document}
+
+%TC endignore

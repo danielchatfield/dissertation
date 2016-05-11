@@ -1,0 +1,90 @@
+\ProvidesPackage{style}
+
+% Define a toggle that enables/disables development settings
+\usepackage{etoolbox}
+\usepackage{ifdraft}
+
+
+% Use subfiles (allows compiling individual sections)
+\usepackage{subfiles}
+
+% Allow including the proposal
+\usepackage[final]{pdfpages}
+
+% allow \say quotation
+\usepackage{dirtytalk}
+\usepackage{csquotes}
+
+% Set margins
+\ifdraft{
+  \usepackage[a4paper, margin=3cm, inner=1cm, outer=6cm, marginparwidth=5cm]{geometry}
+  \usepackage[textsize=small, backgroundcolor=white, bordercolor=white, linecolor=red]{todonotes}
+} {
+  \usepackage[a4paper, margin=3cm]{geometry}
+  \usepackage[disable]{todonotes}
+}
+
+% allow use of figures
+\usepackage{graphicx}
+\graphicspath{{figures/}{../figures/}}
+% allow subcaptions
+\usepackage{subcaption}
+
+% allow urls
+\usepackage{hyperref}
+
+% allow use of listings
+\usepackage{codeenv}
+\lstset{inputpath=../code/}
+
+% description on newline
+\usepackage{enumitem}
+
+\usepackage{tabularx}
+
+% Highlight Go code correctly
+\lstdefinelanguage{Go}%
+  {morekeywords=[1]{package,import,func,type,struct,return,defer,panic,%
+     recover,select,var,const,iota,},%
+   morekeywords=[2]{string,uint,uint8,uint16,uint32,uint64,int,int8,int16,%
+     int32,int64,bool,float32,float64,complex64,complex128,byte,rune,uintptr,%
+     error,interface},%
+   morekeywords=[3]{map,slice,make,new,nil,len,cap,copy,close,true,false,%
+     delete,append,real,imag,complex,chan,},%
+   morekeywords=[4]{for,break,continue,range,goto,switch,case,fallthrough,if,%
+     else,default,},%
+   morekeywords=[5]{Println,Printf,Error,},%
+   sensitive=true,%
+   morecomment=[l]{//},%
+   morecomment=[s]{/*}{*/},%
+   morestring=[b]',%
+   morestring=[b]",%
+   morestring=[s]{`}{`},%
+}
+
+%The varioref package introduces a new command called \vref{}. This command is used exactly like the basic \ref, but it has a different output according to the context. If the object to be referenced is in the same page, it works just like \ref; if the object is far away it will print something like "5 on page 25", i.e. it adds the page number automatically. If the object is close, it can use more refined sentences like "on the next page" or "on the facing page" automatically, according to the context and the document class.
+\usepackage{varioref}
+
+% use my friendlyformatting package
+\usepackage{friendlyformatting}
+
+% Slightly tweak some LaTeX settings for British English
+\usepackage[british]{babel}
+
+% Use newline to separate paragraphs
+\usepackage{parskip}
+
+% Use symbols for footnotes to disambiguate from citations and reset counter
+% on each page
+\usepackage[perpage,symbol]{footmisc}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+% Macros for marking up text
+\usepackage{relsize}
+\newcommand{\mifare}{\textsmaller{MIFARE}}
+\newcommand{\crypto}{\textsmaller{CRYPTO1}}
+\newcommand{\UoC}{the \textsmaller{\smallcaps{University of Cambridge}}}
+
+% Support for typesetting units e.g. 16 bytes
+\usepackage[load=abbr,binary-units]{siunitx}
+\sisetup{group-separator = {,}}

@@ -1,0 +1,98 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, margin=3cm]{geometry}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{parskip} % Use newline to separate paragraphs
+
+ % Use symbols for footnotes to disambiguate from citations and reset counter
+ % on each page
+\usepackage[perpage,symbol]{footmisc}
+\usepackage[utf8]{inputenc} % Expand unicode characters into latex commands
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\newcommand\textline[4][t]{%
+  \par\smallskip\noindent\parbox[#1]{.333\textwidth}{\raggedright#2}%
+  \parbox[#1]{.333\textwidth}{\centering#3}%
+  \parbox[#1]{.333\textwidth}{\raggedleft#4}\par\smallskip%
+}
+
+\begin{document}
+  \begin{titlepage}
+
+    \begin{minipage}[t][][t]{0.5\textwidth}
+      \includegraphics[width=40mm]{./figures/uclogo.pdf}
+    \end{minipage}
+    \begin{minipage}{0.5\textwidth}
+      \begin{flushright}
+        \large
+        \textit{Daniel Chatfield}
+        \\
+        \textit{Robinson College}
+        \\
+        \texttt{\textit{dc584}}
+      \end{flushright}
+    \end{minipage}
+
+    \vfill
+
+    \begin{center}
+
+      {\scshape\Large Part II Project Progress Report}
+      \vspace{1.5cm}
+
+      {\huge\bfseries Elliptic Curve Digital Signature Protection for Mifare
+      Classic RFID Cards\par}
+      \vspace{1cm}
+
+      {\large \today}
+
+      % \textline[t]{supervised by Dr.~Markus Kuhn}{overseen by Prof.~Marcelo Fiore}{director of studiesProf.~Alan Mycroft}
+
+      \vfill
+
+      \begin{minipage}{0.32\textwidth}
+        \begin{center}
+    	    Supervised by\par
+    	    Dr.~Markus Kuhn
+        \end{center}
+      \end{minipage}\hfill\noindent
+      \begin{minipage}{0.32\textwidth}
+        \begin{center}
+  	      Overseen by\par
+  	      Prof.~Marcelo Fiore \\
+          Prof.~Ian Leslie
+        \end{center}
+      \end{minipage}\hfill
+      \begin{minipage}{0.32\textwidth}%
+        \begin{center}
+  	       DoS\par
+  	     Prof.~Alan Mycroft \\
+        \end{center}
+      \end{minipage}
+
+    \end{center}
+  \end{titlepage}
+
+  \section*{Work Completed}
+
+  My command line interface program supports digitally signing and verifying University of Cambridge
+  cards. The CLI can also generate elliptic curve public/private keypairs but currently does not support using these to sign/verify as the private key I'm using is currently hardcoded in the CLI.\@
+
+  The Mifare library that the CLI sits on top of supports almost all of the Mifare Classic specification and provides high-level abstractions for common tasks. The library is split into 2 sections, a set of interfaces that the library provides and a ``driver'' package that has a specific implementation of these interfaces using libnfc. This design will allow me to write other ``drivers'' that simulate the cards in software which will be useful for writing unit tests.
+
+  This design is also essential for testing/benchmarking my card revocation gossip protocol as I will need to simulate hundreds of readers and thousands of cards.
+
+  I have a very naïve implementation of the revocation protocol that simply uses a sector of the card to store revoked cards. Obviously this has many problems (e.g.\ only a few cards can be revoked before you have to overwrite previous entries) but it is useful as a baseline from which I can improve the protocol.
+
+  \section*{Challenges Faced}
+
+  Mifare classic cards come in two sizes (1KB and 4KB). I had wanted my signature scheme to be compatible with both types but the signature size was too large to fit in the smaller sectors found on the 1KB cards. After some research I discovered that a Mifare application can span multiple sectors by explicitly setting the application ID multiple times in the Mifare application directory\footnote{The Mifare application directory is a lookup table stored on the card that tells you which sector a particular application is in.}
+
+
+  \section*{Work To Complete}
+
+  The project is on schedule but I had hoped to be ahead of schedule at this point. I think I might have underestimated the time required to fully implement the revocation gossip protocol as it will likely require several iterations before it has the performance characteristics that I want. I don't envisage this being a problem though as the once the simulation suite is ready experimentation will be very quick and can be done along side the writing of the dissertation.
+
+
+
+\end{document}

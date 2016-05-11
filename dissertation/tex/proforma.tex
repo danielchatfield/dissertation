@@ -1,0 +1,39 @@
+\documentclass[final,dissertation.tex]{subfiles}
+
+%TC:ignore
+
+\begin{document}
+  \chapter*{Proforma}
+
+  {\large
+  \begin{table}[h]
+  \begin{tabularx}{\textwidth}{ll}
+  Name:               & \bf Daniel Chatfield                      \\
+  College:            & \bf Robinson College                      \\
+  Project Title:      & \bf Security Countermeasures for \mifare{} Classic RFID cards \\
+  Examination:        & \bf Computer Science Tripos --- Part II, 2016  \\
+  Word Count:         & \bf \SI{11995}{}\footnote{}  \\
+  Project Originator: & Dr Markus Kuhn                    \\
+  Supervisor:         & Dr Markus Kuhn                    \\
+  \end{tabularx}
+  \end{table}
+  }
+
+  \footnotetext{Computed using \texttt{texcount -total -template={SUM} *.tex}}
+
+  \section*{Original Aim of the Project}
+
+  The original aim of the project, as set out in the proposal, was to develop countermeasures that mitigated the risk of attack against \mifare{} Classic cards. The proposed countermeasures consisted of a digital signature library and a gossip protocol for distributing revoked UIDs.
+
+  I also planned to write a \mifare{} library which would be used by the countermeasures to communicate with \mifare{} Classic cards.
+
+  \section*{Work Completed}
+
+  The project encompasses the original aims. I have produced a \mifare{} library, digital signature library and a revocation gossip protocol.
+
+  In addition to my original aims, I have also devised several additional countermeasures and a comprehensive simulation suite for simulating networks of readers and cards.
+
+  \section*{Special Difficulties}
+  None
+\end{document}
+%TC:endignore

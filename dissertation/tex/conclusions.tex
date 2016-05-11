@@ -1,0 +1,23 @@
+\documentclass[dissertation.tex]{subfiles}
+
+%TC:macrocount \UoC 4
+%TC:macrocount \mifare 1
+%TC: macrocount \crypto 1
+\begin{document}
+  \chapter{Conclusions}
+
+  This project has explored the weaknesses of \mifare{} Classic cards and detailed several countermeasures to mitigate the risk of attack. This project is of particular relevance to \UoC{}, which issues \mifare{} Classic cards to all students and staff.
+
+  This project was a success. I have fulfilled the original aims of the project by developing a high-level \mifare{} library for interacting with \mifare{} cards, a \mifare{} digital signature library for reading and writing signed data, and a gossip protocol for propagating revoked UIDs throughout the network. My research during the project gave me a thorough understanding of the weaknesses in the card, enabling me to devise several additional countermeasures. Combining these countermeasures significantly increases the resources required to mount an attack.
+
+  During the evaluation of the revocation gossip protocol, I demonstrated that it performs well on networks ranging from hundreds to thousands of readers. On a network the size of Cambridge's (albeit randomised) with one online reader for every two offline readers, $99\%$ of readers are updated in 30 taps or less. Given the frequency with which readers are used, this would not take very long.
+
+  The focus of the project changed slightly since its inception, shifting more towards the gossip protocol and simulation suite, and away from the digital signature protection. With the benefit of hindsight I would have tried to collect some real-world card usage data. This would enable me to assess how well the simulation suite matches the real world.
+
+  An organisation with an existing \mifare{} Classic deployment should upgrade to a more secure card, such as the \mifare{} DESFIRE EV2. It may take a long time to update all readers, during the transition the countermeasures outlined in this project can be used to mitigate the risk of attack.
+
+  Kerckhoff's principle is as apt today as it was in the nineteenth century.
+  \begin{displayquote}
+    A cryptographic system should be secure even if everything about the system, except the key, is public knowledge.
+  \end{displayquote}
+\end{document}
